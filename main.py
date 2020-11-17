@@ -30,7 +30,6 @@ if __name__ == '__main__':
 
     opts = parser.parse_args()
 
-
     nbatch = 2
     seq_len = 10
 

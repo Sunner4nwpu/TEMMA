@@ -10,7 +10,6 @@ For the multi-modal CNN-TEMMA, please note that the input multi-stream features 
 ## Citing & Authors
 if you find this repository helpful, please cite our publication:
 
-## Citation
 ```
 @ARTICLE{9257201,
 author={H. {Chen} and D. {Jiang} and H. {Sahli}},

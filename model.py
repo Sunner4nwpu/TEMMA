@@ -446,7 +446,6 @@ class TEMMA(nn.Module):
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
 
-
     def forward(self, x):
 
         _x = torch.chunk(x, self.modal_num, dim=-1)
