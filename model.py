@@ -352,7 +352,12 @@ class TE(nn.Module):
         self.d_ff = opts.d_ff
 
         self.input = ProcessInput(opts, num_features)
-        self.regress = nn.Linear(self.d_model, 1)
+
+        self.regress = nn.Sequential(
+            nn.Linear(self.d_model, self.d_model // 2),
+            nn.ReLU(),
+            nn.Linear(self.d_model // 2, 1)
+        )
         self.dropout_embed = nn.Dropout(p=opts.dropout_embed)
 
         encoder_layer = nn.ModuleList()
@@ -423,7 +428,11 @@ class TEMMA(nn.Module):
             multimodal_encoder_layer.append(MultiModalEncoderLayer(self.d_model, self.modal_num, mm_atten, mt_atten, ff, self.dropout_subconnect))
 
         self.temma = MultiModalEncoder(multimodal_encoder_layer, self.N, self.modal_num)
-        self.regress = nn.Linear(self.d_model * self.modal_num, 1)
+        self.regress = nn.Sequential(
+            nn.Linear(self.d_model * self.modal_num, self.d_model * self.modal_num // 2),
+            nn.ReLU(),
+            nn.Linear(self.d_model * self.modal_num // 2, 1)
+        )
 
         for p in self.temma.parameters():
             if p.dim() > 1:

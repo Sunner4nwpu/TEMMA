@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "D:\\Users\\Administrator\\Anaconda3\\python.exe",
+    "python.formatting.provider": "black",
+    "python.linting.pylintArgs": ["--disable=W,C,E"],
+    "editor.fontFamily": "'Fira Code Retina', Consolas",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "normal",
+    "editor.fontSize": 15,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "jupyter.sendSelectionToInteractiveWindow": true
+}
