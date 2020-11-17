@@ -1,6 +1,12 @@
 
 This repository contains the code for TEMMA.
 
+## Usage
+The main.py gives an example of how to use the CNN-TE as well as the CNN-TEMMA models.
+
+For the multi-modal CNN-TEMMA, please note that the input multi-stream features need to be concatenated first as in the example of the main.py
+
+
 ## Citing & Authors
 if you find this repository helpful, please cite our publication:
 

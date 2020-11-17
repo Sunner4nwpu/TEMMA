@@ -327,7 +327,7 @@ class ProcessInput(nn.Module):
         if opts.embed == 'spatial':
             self.Embeddings = SEmbeddings(opts.d_model, dim)
         elif opts.embed == 'temporal':
-            self.Embeddings = TEmbeddings(opts.d_model, dim)
+            self.Embeddings = TEmbeddings(opts, dim)
         self.PositionEncoding = PositionalEncoding(opts.d_model, opts.dropout_position, max_len=5000)
 
     def forward(self, x):
@@ -356,7 +356,7 @@ class TE(nn.Module):
         self.regress = nn.Sequential(
             nn.Linear(self.d_model, self.d_model // 2),
             nn.ReLU(),
-            nn.Linear(self.d_model // 2, 1)
+            nn.Linear(self.d_model // 2, opts.ntarget)
         )
         self.dropout_embed = nn.Dropout(p=opts.dropout_embed)
 
@@ -431,7 +431,7 @@ class TEMMA(nn.Module):
         self.regress = nn.Sequential(
             nn.Linear(self.d_model * self.modal_num, self.d_model * self.modal_num // 2),
             nn.ReLU(),
-            nn.Linear(self.d_model * self.modal_num // 2, 1)
+            nn.Linear(self.d_model * self.modal_num // 2, opts.ntarget)
         )
 
         for p in self.temma.parameters():
@@ -445,6 +445,7 @@ class TEMMA(nn.Module):
         for p in self.regress.parameters():
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
+
 
     def forward(self, x):
 
