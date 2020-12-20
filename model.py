@@ -16,11 +16,13 @@ def generate_mask_bidirectional(size, atten_len_a, atten_len_b):
     past_all_mask = np.triu(np.ones(attn_shape), k=atten_len_b).astype('uint8')
     past_all_mask = torch.from_numpy(past_all_mask)
     past_all_mask = past_all_mask == 0
+    past_all_mask = past_all_mask.byte()
     no_need_mask = np.triu(np.ones(attn_shape), k=-atten_len_a + 1).astype('uint8')
     no_need_mask = torch.from_numpy(no_need_mask)
     gene_mask = no_need_mask * past_all_mask
 
     return gene_mask.to(device)
+
 
 
 def clones(module, N):
